@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { ColorTheme } from '../../shared/Colors'
 import Images from '../../shared/Image'
@@ -15,6 +15,7 @@ export default function formLoginPage(props: any) {
     let formControlsJSX = formElementArray.map((item: any) => {
         return <InputControl key={item.name} name={item.name} config={item.config} onChange={props.inputChangeHandler} />;
     });
+
     return (
         <View style={styles.container}>
             <View style={styles.containerfull}>
@@ -31,9 +32,9 @@ export default function formLoginPage(props: any) {
                     <Button
                         disabled={!props.formConfig.formIsValid}
                         onPress={props.submitHandler}
-                        style={props.formConfig.formIsValid?styles.btntrue:styles.btnfalse}
+                        style={props.formConfig.formIsValid ? styles.btntrue : styles.btnfalse}
                         isLoading={props.loading}
-                        text='Get OTP'/>
+                        text='Get OTP' />
                 </View>
                 <View style={styles.footrtxt}>
                     <Text style={styles.ftrtxt}>By signing up, you are agree with our Terms and Conditions</Text>

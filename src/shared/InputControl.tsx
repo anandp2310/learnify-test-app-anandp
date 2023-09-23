@@ -50,12 +50,12 @@ export const InputControl = (props: any) => {
             value={props.config.value}
             outlineColor={ColorTheme(4)}
             activeOutlineColor={ColorTheme(4)}
-            contentStyle={{alignSelf:"center", justifyContent:"center",fontSize:18,fontWeight:"bold"}}
+            contentStyle={{ alignSelf: "center", justifyContent: "center", fontSize: 18, fontWeight: "bold" }}
             label={props.config.elementConfig.placeholder}
             disabled={props.config.elementConfig.disabled}
             onChange={(event: any) => props.onChange(event, props.name)}
             style={
-              { backgroundColor: ColorTheme(6), borderRadius:20,width:80 }
+              { backgroundColor: ColorTheme(6), borderRadius: 20, width: 80 }
             }
           />
         );
@@ -107,7 +107,7 @@ export const InputControl = (props: any) => {
               textContainerStyle={{ backgroundColor: ColorTheme(6) }}
               containerStyle={{ backgroundColor: ColorTheme(6), width: '86%' }}
               onChangeFormattedText={(event) => props.onChange(event, props.name)}
-              
+
             // onChangeCountry={ ( e: any )=>props.onChangeCountry( e ) }
             // onChangeText={ ( event ) => props.onChange( event, props.name ) }
             />
@@ -321,6 +321,7 @@ const Styles = StyleSheet.create({
     borderRadius: 30,
     alignItems: 'center',
     borderColor: ColorTheme(4),
+    backgroundColor: ColorTheme(6)
   },
   hiddenInput: {
     width: 0,

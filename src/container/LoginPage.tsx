@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import FormLoginPage from '../components/forms/formLoginPage';
 import { Toast } from '../shared/toast';
 import { Keyboard } from 'react-native';
@@ -73,11 +73,9 @@ export default function LoginPage(props: any) {
         Keyboard.dismiss();
         setTimeout(function () {
             setLoading(false);
-            Toast("OTP send successfull",1);
+            Toast("OTP send successfull", 1);
             props.navigation.navigate('OTPVerifyPage', { num: form.phone.value });
-        }, 1000); 
-        
-
+        }, 1000);
     };
 
     return (

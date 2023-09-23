@@ -1,40 +1,67 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
-import { ColorTheme } from '../../shared/Colors'
+import { StyleSheet, Text, TextInput, View, Image } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { ColorTheme } from '../../shared/Colors';
 import Images from '../../shared/Image';
-import { InputControl } from '../../shared/InputControl';
-import OTPInputView from '@twotalltotems/react-native-otp-input'
+import Button from '../../shared/Button';
+
 export default function formOTPVerifyPage(props: any) {
-  let formElementArray: any[] = [];
+  const [active, setActive] = useState(false);
 
-  for (let [key, value] of Object.entries(props.formConfig)) {
-    formElementArray.push({ name: key, config: value });
-  }
+  const [pin1, setPin1] = useState('');
+  const [pin2, setPin2] = useState('');
+  const [pin3, setPin3] = useState('');
+  const [pin4, setPin4] = useState('');
 
-  let formControlsJSX = formElementArray.map((item: any) => {
-    return <InputControl key={item.name} name={item.name} config={item.config} onChange={props.inputChangeHandler} />;
-  });
+  const pin1Ref = useRef(null);
+  const pin2Ref = useRef(null);
+  const pin3Ref = useRef(null);
+  const pin4Ref = useRef(null);
 
-  function addPlusAndSpacesToNumber(number:any) {
+  function addPlusAndSpacesToNumber(number: any) {
     if (typeof number !== 'string') {
       number = String(number);
     }
-  
+
     if (number.length !== 13) {
       return 'Invalid input: 13 digits required';
     }
-  
+
     const part1 = number.substring(0, 3);
     const part2 = number.substring(3, 8);
     const part3 = number.substring(8);
-  
+
     const formattedNumber = `${part1} ${part2} ${part3}`;
     return formattedNumber;
   }
-  
-  const originalNumber = props.num; 
+
+  const originalNumber = props.num;
   const formattedNumber = addPlusAndSpacesToNumber(originalNumber);
-  
+
+  const handlePinChange = (pin: string, ref: React.MutableRefObject<any>, nextRef: React.MutableRefObject<any> | null) => {
+    if (pin.length === 1 && nextRef) {
+      nextRef.current.focus();
+    }
+    switch (ref) {
+      case pin1Ref:
+        setPin1(pin);
+        break;
+      case pin2Ref:
+        setPin2(pin);
+        break;
+      case pin3Ref:
+        setPin3(pin);
+        break;
+      case pin4Ref:
+        setPin4(pin);
+        break;
+      default:
+        break;
+    }
+    if (pin1 != '' && pin2 != '' && pin3 != '' && pin4 == '') {
+      setActive(true);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.containerfull}>
@@ -50,24 +77,51 @@ export default function formOTPVerifyPage(props: any) {
         </View>
         <View style={styles.forminput}>
           <View style={styles.input1}>
-          {formControlsJSX.slice(0, 1)}
+            <TextInput
+              ref={pin1Ref}
+              keyboardType={'number-pad'}
+              maxLength={1}
+              style={styles.textinput}
+              onChangeText={(pin1) => handlePinChange(pin1, pin1Ref, pin2Ref)}
+            />
           </View>
           <View style={styles.input1}>
-          {formControlsJSX.slice(1, 2)}
+            <TextInput
+              ref={pin2Ref}
+              keyboardType={'number-pad'}
+              maxLength={1}
+              style={styles.textinput}
+              onChangeText={(pin2) => handlePinChange(pin2, pin2Ref, pin3Ref)}
+            />
           </View>
           <View style={styles.input1}>
-          {formControlsJSX.slice(2, 3)}
+            <TextInput
+              ref={pin3Ref}
+              keyboardType={'number-pad'}
+              maxLength={1}
+              style={styles.textinput}
+              onChangeText={(pin3) => handlePinChange(pin3, pin3Ref, pin4Ref)}
+            />
           </View>
           <View style={styles.input1}>
-          {formControlsJSX.slice(3, 4)}
+            <TextInput
+              ref={pin4Ref}
+              keyboardType={'number-pad'}
+              maxLength={1}
+              style={styles.textinput}
+              onChangeText={(pin4) => handlePinChange(pin4, pin4Ref, null)}
+            />
           </View>
         </View>
-        
-        <TouchableOpacity
-          onPress={props.submitHandler}
-          style={styles.formbtn}>
-          <Text style={styles.btntxt}>Verify OTP</Text>
-        </TouchableOpacity>
+        <View>
+          <Button
+            disabled={!active}
+            onPress={props.submitHandler}
+            style={active ? styles.formbtn : styles.btnfalse}
+            isLoading={props.loading}
+            text='Verify OTP' />
+        </View>
+
         <View style={styles.footrtxt}>
           <Text style={styles.ftrtxt}>By signing up, you are agree with our Terms and Conditions</Text>
         </View>
@@ -113,6 +167,12 @@ const styles = StyleSheet.create({
     padding: 18,
     marginTop: 60
   },
+  btnfalse: {
+    borderRadius: 30,
+    backgroundColor: ColorTheme(3),
+    padding: 18,
+    marginTop: 60
+  },
   btntxt: {
     fontSize: 18,
     color: ColorTheme(1),
@@ -137,9 +197,15 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     alignSelf: "center"
+  },
+  textinput: {
+    height: 50,
+    borderWidth: 1,
+    width: 70,
+    borderRadius: 15,
+    paddingHorizontal: 20,
+    fontSize: 20,
+    borderColor: ColorTheme(4),
+    backgroundColor: ColorTheme(6)
   }
 })
-
-function useRef(arg0: null) {
-    throw new Error('Function not implemented.');
-  }

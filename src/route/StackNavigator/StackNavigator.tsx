@@ -1,32 +1,34 @@
+import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import OTPVerifyPage from '../../container/OTPVerifyPage';
 import LoginPage from '../../container/LoginPage';
 import { ColorTheme } from '../../shared/Colors';
 
 const Stack = createNativeStackNavigator();
+
 let noHeader = {
-    headerShown: false,
+  headerShown: false,
 };
 
 let headerNoTitle = {
-    headerTitle: '',
-    headerShown: true,
-    headerTintColor: ColorTheme(3),
-    headerStyle: { backgroundColor: ColorTheme(2) },
+  headerTitle: '',
+  headerShown: true,
+  headerTintColor: ColorTheme(3),
+  headerStyle: { backgroundColor: ColorTheme(2) },
 };
 
 let headerNoTitleNoShown = {
-    headerTitle: '',
-    headerShadowVisible: false,
-    headerTintColor: ColorTheme(3),
-    headerStyle: { backgroundColor: ColorTheme(1) },
+  headerTitle: '',
+  headerShadowVisible: false,
+  headerTintColor: ColorTheme(3),
+  headerStyle: { backgroundColor: ColorTheme(1) },
 };
 
 let headerNoShadow = {
-    headerShown: true,
-    headerShadowVisible: false,
-    headerTintColor: ColorTheme(5),
-    headerStyle: { backgroundColor: ColorTheme(3) },
+  headerShown: true,
+  headerShadowVisible: false,
+  headerTintColor: ColorTheme(5),
+  headerStyle: { backgroundColor: ColorTheme(3) },
 };
 function MyStack() {
   return (
