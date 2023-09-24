@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Learnify-TestApp-Anandp",
-    "slug": "Learnify-TestApp-Anandp",
+    "name": "Learnify-Test",
+    "slug": "Learnify-Test",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,14 +22,14 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anandp.learnifytestapp"
+      "package": "com.anandp.learnifytest"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "f0257b29-c66e-4652-8f6b-1e34fcac1267"
+        "projectId": "9a11a085-dd56-4382-bf62-a5263691c7c7"
       }
     }
   }
