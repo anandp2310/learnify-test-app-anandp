@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { ColorTheme } from '../../shared/Colors'
 import Images from '../../shared/Image'
@@ -17,7 +17,7 @@ export default function formLoginPage(props: any) {
     });
 
     return (
-        <View style={styles.container}>
+        <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center' }} automaticallyAdjustKeyboardInsets keyboardShouldPersistTaps={'always'} showsVerticalScrollIndicator={false} style={styles.container}>
             <View style={styles.containerfull}>
                 <View style={styles.header}>
                     <Text style={styles.headertxt}>Log in</Text>
@@ -40,16 +40,14 @@ export default function formLoginPage(props: any) {
                     <Text style={styles.ftrtxt}>By signing up, you are agree with our Terms and Conditions</Text>
                 </View>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: ColorTheme(1),
-        alignItems: 'center',
-        justifyContent: 'center',
+        backgroundColor: ColorTheme(1)
     },
     containerfull: {
         width: "90%"

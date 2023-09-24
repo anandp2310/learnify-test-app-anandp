@@ -64,6 +64,7 @@ export default function LoginPage(props: any) {
                 formIsValid = updatedForm[formControl].valid && formIsValid;
             }
         }
+
         updatedForm.formIsValid = formIsValid;
         setForm(updatedForm);
     };
